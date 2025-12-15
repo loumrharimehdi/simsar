@@ -51,7 +51,10 @@ export function PropertyCard({ property }: PropertyCardProps) {
     const hasImages = property.images && property.images.length > 0
 
     return (
-        <div className="bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50 hover:shadow-xl transition-shadow duration-300 group">
+        <div
+            className="bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-200/40 hover:scale-[1.02] hover:border-[#FF6B35]/20 focus:shadow-2xl focus:shadow-orange-200/50 focus:scale-[1.02] focus:border-[#FF6B35]/40 focus:outline-none transition-all duration-300 ease-out group cursor-pointer border-2 border-transparent"
+            tabIndex={0}
+        >
             {/* Image Carousel */}
             <div className="relative h-48 bg-gray-100">
                 {hasImages ? (

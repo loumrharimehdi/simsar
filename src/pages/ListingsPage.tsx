@@ -47,12 +47,12 @@ export function ListingsPage() {
                 <div className="max-w-6xl mx-auto px-4 py-6">
                     {/* Ultra-modern iOS 26 Search Bar */}
                     <form onSubmit={handleSearch} className="mb-8">
-                        <div className={`relative max-w-2xl mx-auto transition-all duration-500 ${isFocused ? 'scale-[1.02]' : ''}`}>
+                        <div className={`relative max-w-2xl mx-auto transition-all duration-500 ${isFocused ? 'scale-[1.02]' : ''} hover:scale-[1.01]`}>
                             {/* Glow effect behind */}
-                            <div className={`absolute inset-0 bg-gradient-to-r from-orange-400/30 via-pink-400/20 to-purple-400/30 rounded-3xl blur-xl transition-opacity duration-500 ${isFocused ? 'opacity-100' : 'opacity-0'}`} />
+                            <div className={`absolute inset-0 bg-gradient-to-r from-orange-400/30 via-pink-400/20 to-purple-400/30 rounded-3xl blur-xl transition-opacity duration-500 ${isFocused ? 'opacity-100' : 'opacity-0'} group-hover:opacity-50`} />
 
                             {/* Main search container */}
-                            <div className={`relative bg-white/90 backdrop-blur-2xl rounded-3xl border-2 transition-all duration-300 shadow-xl ${isFocused ? 'border-[#FF6B35] shadow-orange-200/50' : 'border-white/50 shadow-gray-200/30'}`}>
+                            <div className={`relative bg-white/90 backdrop-blur-2xl rounded-3xl border-2 transition-all duration-300 shadow-xl ${isFocused ? 'border-[#FF6B35] shadow-orange-200/50' : 'border-white/50 shadow-gray-200/30 hover:border-[#FF6B35]/30 hover:shadow-orange-100/40'}`}>
                                 <div className="flex items-center px-5 py-4">
                                     {/* Animated search icon */}
                                     <div className={`w-10 h-10 rounded-2xl flex items-center justify-center mr-4 transition-all duration-300 ${isFocused ? 'bg-gradient-to-br from-[#FF6B35] to-[#FF8F5E] shadow-lg shadow-orange-300/50' : 'bg-gray-100'}`}>
