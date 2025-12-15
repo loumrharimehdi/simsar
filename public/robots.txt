@@ -1,0 +1,9 @@
+# Simsar Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://simsar.ma/sitemap.xml
+
+# Disallow admin/api paths (if any in future)
+Disallow: /api/

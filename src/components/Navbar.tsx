@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { Home, Search } from 'lucide-react'
 
-const WHATSAPP_NUMBER = '21264662605'
+const WHATSAPP_NUMBER = '212644662605'
 
 export function Navbar() {
     const location = useLocation()
@@ -31,10 +31,10 @@ export function Navbar() {
                     {isLandingPage && (
                         <Link
                             to="/annonces"
-                            className="hidden sm:flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2.5 rounded-2xl font-medium transition-all duration-300 hover:scale-105"
+                            className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 sm:px-4 py-2.5 rounded-2xl font-medium transition-all duration-300 hover:scale-105"
                         >
                             <Search className="w-4 h-4" />
-                            <span>Voir les annonces</span>
+                            <span className="hidden sm:inline">Voir les annonces</span>
                         </Link>
                     )}
 

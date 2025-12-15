@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Bed, Bath, Maximize, MapPin, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Property } from '../types/database'
 
@@ -122,9 +123,11 @@ export function PropertyCard({ property }: PropertyCardProps) {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-semibold text-gray-900 mb-2 line-clamp-1">
-                    {property.title}
-                </h3>
+                <Link to={`/annonce/${property.id}`} className="block">
+                    <h3 className="font-semibold text-gray-900 mb-2 line-clamp-1 hover:text-[#FF6B35] transition-colors">
+                        {property.title}
+                    </h3>
+                </Link>
 
                 {/* Location */}
                 <div className="flex items-center gap-1 text-gray-500 text-sm mb-3">

@@ -3,6 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom'
 import { Search, Home as HomeIcon, Palmtree, Building2, Sparkles } from 'lucide-react'
 import { Navbar } from '../components/Navbar'
 import { PropertyCard } from '../components/PropertyCard'
+import { SEO } from '../components/SEO'
 import { useProperties } from '../hooks/useProperties'
 import type { PropertyType } from '../types/database'
 
@@ -24,7 +25,7 @@ export function ListingsPage() {
         city: searchQuery || undefined,
     }), [activeType, searchQuery])
 
-    const { properties, loading, error } = useProperties(options)
+    const { properties, loading, loadingMore, error, hasMore, loadMore } = useProperties(options)
 
     const handleTypeChange = (type: PropertyType) => {
         setSearchParams({ type })
@@ -36,6 +37,10 @@ export function ListingsPage() {
 
     return (
         <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#FFF8F0] to-[#FFF5EB]">
+            <SEO
+                title={activeType === 'achat' ? 'Achat immobilier' : activeType === 'courte' ? 'Location courte durée' : 'Location longue durée'}
+                description={`Découvrez nos annonces ${activeType === 'achat' ? "d'achat" : 'de location'} immobilier vérifiées au Maroc. Appartements, villas et maisons à ${activeType === 'achat' ? 'vendre' : 'louer'}.`}
+            />
             <Navbar />
 
             <main className="flex-1 pb-32">
@@ -135,11 +140,31 @@ export function ListingsPage() {
                             </Link>
                         </div>
                     ) : (
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {properties.map((property) => (
-                                <PropertyCard key={property.id} property={property} />
-                            ))}
-                        </div>
+                        <>
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {properties.map((property) => (
+                                    <PropertyCard key={property.id} property={property} />
+                                ))}
+                            </div>
+                            {hasMore && (
+                                <div className="text-center mt-8">
+                                    <button
+                                        onClick={loadMore}
+                                        disabled={loadingMore}
+                                        className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-xl hover:bg-white text-gray-700 px-8 py-3 rounded-2xl font-medium transition-all duration-300 hover:scale-105 shadow-lg border border-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {loadingMore ? (
+                                            <>
+                                                <div className="w-5 h-5 border-2 border-gray-300 border-t-[#FF6B35] rounded-full animate-spin"></div>
+                                                Chargement...
+                                            </>
+                                        ) : (
+                                            'Voir plus d\'annonces'
+                                        )}
+                                    </button>
+                                </div>
+                            )}
+                        </>
                     )}
                 </div>
             </main>
@@ -160,8 +185,8 @@ export function ListingsPage() {
                                         key={cat.type}
                                         onClick={() => handleTypeChange(cat.type)}
                                         className={`flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-full transition-all duration-300 ${activeType === cat.type
-                                                ? 'bg-gradient-to-r from-[#FF6B35] to-[#FF8F5E] text-white shadow-lg shadow-orange-400/40 scale-[1.02]'
-                                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                                            ? 'bg-gradient-to-r from-[#FF6B35] to-[#FF8F5E] text-white shadow-lg shadow-orange-400/40 scale-[1.02]'
+                                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
                                             }`}
                                     >
                                         <span className="text-lg">{cat.emoji}</span>
