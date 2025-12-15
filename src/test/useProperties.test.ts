@@ -31,7 +31,7 @@ vi.mock('../lib/supabase', () => ({
                             ilike: vi.fn(() => Promise.resolve({ data: mockData, error: null }))
                         })),
                         ilike: vi.fn(() => Promise.resolve({ data: mockData, error: null })),
-                        then: (cb) =>
+                        then: (cb: (result: { data: typeof mockData; error: null }) => void) =>
                             Promise.resolve({ data: mockData, error: null }).then(cb)
                     }))
                 }))
