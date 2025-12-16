@@ -16,9 +16,22 @@ export function Footer() {
                     </div>
 
                     {/* Copyright */}
-                    <p className="text-gray-400 text-sm">
-                        © {currentYear} Simsar. Tous droits réservés.
-                    </p>
+                    <div className="text-center">
+                        <p className="text-gray-400 text-sm">
+                            © {currentYear} Simsar. Tous droits réservés.
+                        </p>
+                        <p className="text-gray-400 text-sm mt-1">
+                            Fait par{' '}
+                            <a
+                                href="https://mehdiloumrhari.agency"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#FF6B35] hover:text-[#FF8F5E] font-medium transition-colors duration-200"
+                            >
+                                Loumrhari Agency
+                            </a>
+                        </p>
+                    </div>
 
                     {/* Social Links */}
                     <div className="flex items-center gap-3">
