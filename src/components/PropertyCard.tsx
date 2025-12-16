@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Bed, Bath, Maximize, MapPin, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Property } from '../types/database'
 
@@ -29,20 +30,26 @@ export function PropertyCard({ property }: PropertyCardProps) {
         }
     }
 
-    const openWhatsApp = () => {
+    const openWhatsApp = (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
         const message = encodeURIComponent(
             `Bonjour, je suis intéressé(e) par votre bien: ${property.title} à ${property.city} (${formatPrice(property.price)} DH)`
         )
         window.open(`https://wa.me/${property.whatsapp_number}?text=${message}`, '_blank')
     }
 
-    const nextImage = () => {
+    const nextImage = (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
         setCurrentImageIndex((prev) =>
             prev === property.images.length - 1 ? 0 : prev + 1
         )
     }
 
-    const prevImage = () => {
+    const prevImage = (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
         setCurrentImageIndex((prev) =>
             prev === 0 ? property.images.length - 1 : prev - 1
         )
@@ -51,9 +58,9 @@ export function PropertyCard({ property }: PropertyCardProps) {
     const hasImages = property.images && property.images.length > 0
 
     return (
-        <div
-            className="bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-200/40 hover:scale-[1.02] hover:border-[#FF6B35]/20 focus:shadow-2xl focus:shadow-orange-200/50 focus:scale-[1.02] focus:border-[#FF6B35]/40 focus:outline-none transition-all duration-300 ease-out group cursor-pointer border-2 border-transparent"
-            tabIndex={0}
+        <Link
+            to={`/annonces/${property.id}`}
+            className="block bg-white rounded-2xl overflow-hidden shadow-lg shadow-gray-200/50 hover:shadow-2xl hover:shadow-orange-200/40 hover:scale-[1.02] hover:border-[#FF6B35]/20 focus:shadow-2xl focus:shadow-orange-200/50 focus:scale-[1.02] focus:border-[#FF6B35]/40 focus:outline-none transition-all duration-300 ease-out group cursor-pointer border-2 border-transparent"
         >
             {/* Image Carousel */}
             <div className="relative h-48 bg-gray-100">
@@ -62,6 +69,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
                         <img
                             src={property.images[currentImageIndex]}
                             alt={property.title}
+                            loading="lazy"
                             className="w-full h-full object-cover"
                         />
                         {property.images.length > 1 && (
@@ -168,6 +176,6 @@ export function PropertyCard({ property }: PropertyCardProps) {
                     Contacter sur WhatsApp
                 </button>
             </div>
-        </div>
+        </Link>
     )
 }

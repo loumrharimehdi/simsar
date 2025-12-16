@@ -87,3 +87,16 @@ html {
     0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 20px 25px -5px rgba(0, 0, 0, 0.05);
 }
+
+/* Screen reader only - for accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
