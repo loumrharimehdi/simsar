@@ -1,7 +1,19 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import { Navbar } from '../components/Navbar'
+
+// Mock AuthContext
+vi.mock('../contexts/AuthContext', () => ({
+    useAuth: () => ({
+        user: null,
+        loading: false,
+        session: null,
+        signIn: vi.fn(),
+        signUp: vi.fn(),
+        signOut: vi.fn(),
+    })
+}))
 
 describe('Navbar', () => {
     const renderNavbar = () => {
@@ -17,9 +29,9 @@ describe('Navbar', () => {
         expect(screen.getByText('Simsar')).toBeInTheDocument()
     })
 
-    it('should render WhatsApp CTA button', () => {
+    it('should render Espace Pro button when not logged in', () => {
         renderNavbar()
-        expect(screen.getByRole('button')).toBeInTheDocument()
+        expect(screen.getByText('Espace Pro')).toBeInTheDocument()
     })
 
     it('should have a link to home page', () => {

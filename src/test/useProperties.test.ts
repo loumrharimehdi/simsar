@@ -16,6 +16,8 @@ const mockData = [
         images: ['https://example.com/image.jpg'],
         whatsapp_number: '212644662605',
         verified: true,
+        professional_id: null,
+        status: 'active',
         created_at: '2024-01-01T00:00:00Z'
     }
 ]
